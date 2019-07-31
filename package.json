@@ -1,0 +1,61 @@
+{
+  "name": "coolant",
+  "version": "1.0.0",
+  "description": "Modular presentation for your build radiator",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "files": [
+    "build/**/*",
+    "README.md",
+    "LICENSE"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/nbeach/coolant.git"
+  },
+  "author": "Nicholas Beach <nicholas.c.beach@gmail.com> (http://nicholasbeach.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nbeach/coolant/issues"
+  },
+  "keywords": [
+    "build",
+    "monitor",
+    "radiator"
+  ],
+  "scripts": {
+    "clean": "rimraf build/",
+    "build": "yarn run clean && tsc --project tsconfig.build.json",
+    "release:tag": "git tag $(node -p -e \"require('./package.json').version\") && git push origin --tags",
+    "release": "yarn run test:once && yarn run build && yarn run release:tag && yarn publish && yarn run clean",
+    "test": "mocha --opts mocha.opts --watch",
+    "test:once": "mocha --opts mocha.opts",
+    "lint": "tslint --project .",
+    "ci": "yarn lint && yarn test:once && yarn build"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/chai-dom": "0.0.7",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.6.8",
+    "@types/react": "^16.8.23",
+    "@types/styled-components": "^4.1.18",
+    "chai": "^4.2.0",
+    "chai-dom": "^1.8.1",
+    "jsdom": "^15.1.1",
+    "mocha": "^6.2.0",
+    "rimraf": "^2.6.3",
+    "ts-loader": "^6.0.4",
+    "ts-node": "^8.3.0",
+    "tslint": "^5.18.0",
+    "tslint-immutable": "^6.0.1",
+    "tslint-no-unused-expression-chai": "^0.1.4",
+    "typescript": "~3.5.3"
+  },
+  "dependencies": {
+    "moment": "^2.24.0",
+    "react": "^16.8.6",
+    "react-icons": "^3.7.0",
+    "styled-components": "^4.3.2"
+  }
+}

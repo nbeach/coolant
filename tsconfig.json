@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "ES5",
+    "module": "commonjs",
+    "sourceMap": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "importHelpers": true,
+    "noEmitHelpers": true,
+    "strict": true,
+    "noImplicitReturns": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "types": ["node", "mocha", "chai-dom"],
+    "declaration" : true,
+    "jsx": "preserve",
+    "esModuleInterop": true,
+    "outDir": "./build"
+  }
+}
