@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import {BuildCard} from "./BuildCard"
-import {Build} from "../../model/Build";
+import {Build} from "../../model/Build"
 
 interface BuildListStateProps {
     readonly builds: ReadonlyArray<Build>
