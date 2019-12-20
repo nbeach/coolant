@@ -5,6 +5,7 @@ import {Style} from "../../util/Style"
 
 export interface Build {
     readonly id: string
+    readonly number: string
     readonly name: string
     readonly status: BuildStatus
 }

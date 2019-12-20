@@ -4,6 +4,7 @@ import {Build, BuildCardPresenter, BuildStatus} from "./BuildCardPresenter"
 
 const passingState: Build = {
     id: "1",
+    number: "",
     name: "Example Project",
     status: BuildStatus.Passed,
 }
