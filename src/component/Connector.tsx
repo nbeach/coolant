@@ -1,4 +1,5 @@
 import React, {FunctionComponent} from "react"
+import {periodically} from "../event"
 
 export type Provider<T> =  () => Promise<T>
 
@@ -13,26 +14,33 @@ export interface ConnectorProps<T, C> {
     readonly component: FunctionComponent<{ readonly data: T }>
 }
 
-export class Connector<T, C> extends React.Component<ConnectorProps<T, C>, { readonly data: T }> {
+export class Connector<T, C> extends React.Component<ConnectorProps<T, C>, { readonly data: T | null }> {
     // tslint:disable-next-line:readonly-keyword
     private intervalId: NodeJS.Timeout | null = null
 
+    constructor(props: ConnectorProps<T, C>) {
+        super(props)
+        this.state = { data: null }
+    }
+
+
     public render() {
         const ComponentToConnect = this.props.component
-        return <ComponentToConnect data={this.state.data}/>
+        return this.state.data === null ? <></> : <ComponentToConnect data={this.state.data}/>
     }
 
     public componentDidMount(): void {
-        const updateIntervalMilliseconds = (this.props.updateIntervalSeconds || 5) * 1000
-
-        this.intervalId = setInterval(() => {
-            this.props.provider().then(data => this.setState({ data }))
-        }, updateIntervalMilliseconds)
+        this.intervalId = periodically(() => this.updateState(), this.props.updateIntervalSeconds)
     }
 
     public componentWillUnmount(): void {
         if (this.intervalId !== null) {
             clearInterval(this.intervalId)
         }
+    }
+
+    private async updateState() {
+        const data = await this.props.provider()
+        this.setState({ data })
     }
 }
