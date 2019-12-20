@@ -1,7 +1,6 @@
-import {PullRequestListPresenter} from "./PullRequestList"
+import {PullRequest, PullRequestListPresenter, PullRequestStatus} from "./PullRequestListPresenter"
 import {storiesOf} from "@storybook/react"
 import React from "react"
-import {PullRequest, PullRequestStatus} from "../../model/PullRequest"
 
 const pullRequests: readonly PullRequest[] = [
     { id: "1", name: "Lorem ipsum",             timeOpened: "2019-08-05T12:00:00Z", approvals: 3, commenters: ["john.doe"], status: PullRequestStatus.UnderReview },
@@ -14,6 +13,6 @@ const pullRequests: readonly PullRequest[] = [
     { id: "8", name: "Officia deserunt",        timeOpened: "2019-08-05T00:00:00Z", approvals: 0, commenters: [], status: PullRequestStatus.New  },
 ]
 
-storiesOf("PullRequestList", module)
+storiesOf("PullRequestListPresenter", module)
     .add("many pull requests", () => <PullRequestListPresenter pullRequests={pullRequests}/>)
     .add("no pull requests", () => <PullRequestListPresenter pullRequests={[]}/>)

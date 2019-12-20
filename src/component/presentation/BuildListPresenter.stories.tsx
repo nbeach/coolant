@@ -1,7 +1,7 @@
 import React from "react"
 import {storiesOf} from "@storybook/react"
-import {BuildListPresenter} from "./BuildList"
-import {Build, BuildStatus} from "../../model/Build"
+import {BuildListPresenter} from "./BuildListPresenter"
+import {Build, BuildStatus} from "./BuildCardPresenter"
 
 const builds: ReadonlyArray<Build> = [
     { id: "1", name: "Lorem ipsum",  status: BuildStatus.Passed },
@@ -15,5 +15,5 @@ const builds: ReadonlyArray<Build> = [
 ]
 
 storiesOf("BuildListPresenter", module)
-    .add("one build", () => <BuildListPresenter builds={[builds[0]]}/>)
-    .add("many builds", () => <BuildListPresenter builds={builds}/>)
+    .add("one build", () => <BuildListPresenter data={[builds[0]]}/>)
+    .add("many builds", () => <BuildListPresenter data={builds}/>)

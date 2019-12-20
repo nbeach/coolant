@@ -1,13 +1,25 @@
 import React from "react"
 import styled from "styled-components"
-import {PullRequest, PullRequestStatus} from "../../model/PullRequest"
-import {IntervalUpdateConnect} from "../../connect/IntervalUpdateConnect"
 import moment, {Moment} from "moment"
-import {BuildStatus} from "../..";
-import {Style} from "../../util/Style";
+import {Style} from "../../util/Style"
+
+export interface PullRequest {
+    readonly id: string,
+    readonly name: string,
+    readonly approvals: number,
+    readonly timeOpened: string,
+    readonly commenters: readonly string[]
+    readonly status: PullRequestStatus
+}
+
+export enum PullRequestStatus {
+    New,
+    ReadyToMerge,
+    UnderReview,
+}
 
 
-interface PullRequestStateProps {
+interface PullRequestListPresenterStateProps {
     readonly pullRequests: ReadonlyArray<PullRequest>
 }
 
@@ -43,7 +55,7 @@ const CommentersField = styled.div`width: 35%;`
 
 
 
-export const PullRequestListPresenter = ({pullRequests}: PullRequestStateProps) =>
+export const PullRequestListPresenter = ({pullRequests}: PullRequestListPresenterStateProps) =>
    <Container>
        { pullRequests.length === 0 ? <strong>No Open Pull Requests</strong> :  <Item>
            <h4>{pullRequests.length} Open Pull Requests</h4>
@@ -77,4 +89,3 @@ export const timeElapsed = (startTime: string): string => {
     return formattedDays + formattedHours + formattedMinutes
 }
 
-export const PullRequestList = IntervalUpdateConnect(PullRequestListPresenter)

@@ -1,8 +1,19 @@
 import React from "react"
 import styled from "styled-components"
 import {FaCheck, FaClock, FaExclamation} from "react-icons/fa"
-import {Build, BuildStatus} from "../../model/Build"
 import {Style} from "../../util/Style"
+
+export interface Build {
+    readonly id: string
+    readonly name: string
+    readonly status: BuildStatus
+}
+
+export enum BuildStatus {
+    Passed = "Passing",
+    Running = "Running",
+    Failed = "Failed",
+}
 
 const statusColorMap = {
     [BuildStatus.Passed]: Style.color.state.passed,
@@ -36,7 +47,7 @@ const Name = styled.div`
     text-overflow: ellipsis;
 `
 
-export const BuildCard = ({ name, status, scaleFactor }: Build & { readonly scaleFactor: number }) =>
+export const BuildCardPresenter = ({ name, status, scaleFactor }: Build & { readonly scaleFactor: number }) =>
     <Card status={status} scaleFactor={scaleFactor}>
         {statusGlpyhMap[status]}&nbsp;&nbsp;<Name> {name}</Name>
     </Card>
