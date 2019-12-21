@@ -3,3 +3,4 @@ alert("Some Coolant features, such as sound, require the user to interaction wit
 export * from "./component"
 export * from "./effect"
 export * from "./event"
+export * from "./model"

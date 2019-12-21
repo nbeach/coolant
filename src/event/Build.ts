@@ -1,7 +1,7 @@
-import {Build, BuildStatus} from "../component"
-import {periodicallyWithState} from "./time"
+import {periodicallyWithState} from "./Time"
 import {Provider} from "../component/Connector"
 import {ObjectMap, toObjectMap} from "../util/ObjectMap"
+import {Build, BuildStatus} from "../model"
 
 export const onNewBuild = (provider: Provider<ReadonlyArray<Build>>, action: (priorBuild: Build, currentBuild: Build) => void) => {
     periodicallyWithState(async (priorRetrievedBuild: ObjectMap<Build>) => {

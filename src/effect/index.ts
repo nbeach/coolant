@@ -1,1 +1,1 @@
-export * from "./sound"
+export * from "./Sound"

@@ -2,21 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import moment, {Moment} from "moment"
 import {Style} from "../../util/Style"
-
-export interface PullRequest {
-    readonly id: string,
-    readonly name: string,
-    readonly approvals: number,
-    readonly timeOpened: string,
-    readonly commenters: readonly string[]
-    readonly status: PullRequestStatus
-}
-
-export enum PullRequestStatus {
-    New,
-    ReadyToMerge,
-    UnderReview,
-}
+import {PullRequest, PullRequestStatus} from "../../model/PullRequest"
 
 
 interface PullRequestListPresenterStateProps {

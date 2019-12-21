@@ -1,6 +1,7 @@
 import React from "react"
 import {storiesOf} from "@storybook/react"
-import {Build, BuildCardPresenter, BuildStatus} from "./BuildCardPresenter"
+import {Build, BuildStatus} from "../../model"
+import {BuildCardPresenter} from "./BuildCardPresenter"
 
 const passingState: Build = {
     id: "1",

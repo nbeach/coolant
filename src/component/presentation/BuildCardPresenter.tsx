@@ -2,19 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import {FaCheck, FaClock, FaExclamation} from "react-icons/fa"
 import {Style} from "../../util/Style"
-
-export interface Build {
-    readonly id: string
-    readonly number: string
-    readonly name: string
-    readonly status: BuildStatus
-}
-
-export enum BuildStatus {
-    Passed = "Passing",
-    Running = "Running",
-    Failed = "Failed",
-}
+import {Build, BuildStatus} from "../../model"
 
 const statusColorMap = {
     [BuildStatus.Passed]: Style.color.state.passed,

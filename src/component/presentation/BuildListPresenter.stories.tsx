@@ -1,7 +1,7 @@
 import React from "react"
 import {storiesOf} from "@storybook/react"
 import {BuildListPresenter} from "./BuildListPresenter"
-import {Build, BuildStatus} from "./BuildCardPresenter"
+import {Build, BuildStatus} from "../../model"
 
 const builds: ReadonlyArray<Build> = [
     { id: "1", number: "", name: "Lorem ipsum",  status: BuildStatus.Passed },
