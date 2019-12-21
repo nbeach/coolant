@@ -2,11 +2,11 @@ import React from "react"
 import styled from "styled-components"
 import moment, {Moment} from "moment"
 import {Style} from "../../util/Style"
-import {PullRequest, PullRequestStatus} from "../../model/PullRequest"
+import {PullRequest, PullRequestStatus} from "../../model"
 
 
 interface PullRequestListPresenterStateProps {
-    readonly pullRequests: ReadonlyArray<PullRequest>
+    readonly data: ReadonlyArray<PullRequest>
 }
 
 const Container = styled.div`
@@ -37,16 +37,13 @@ const PullRequestCard = styled.div<{ readonly status: PullRequestStatus}>`
 const NameField = styled.div`width: 25%;`
 const TimeField = styled.div`width: 25%;`
 const ApprovalsField = styled.div`width: 15%;`
-const CommentersField = styled.div`width: 35%;`
 
-
-
-export const PullRequestListPresenter = ({pullRequests}: PullRequestListPresenterStateProps) =>
+export const PullRequestListPresenter = ({data}: PullRequestListPresenterStateProps) =>
    <Container>
-       { pullRequests.length === 0 ? <strong>No Open Pull Requests</strong> :  <Item>
-           <h4>{pullRequests.length} Open Pull Requests</h4>
+       { data.length === 0 ? <strong>No Open Pull Requests</strong> :  <Item>
+           <h4>{data.length} Open Pull Requests</h4>
 
-           {pullRequests.map(pullRequest => <PullRequestLine pullRequest={pullRequest}/>)}
+           {data.map(pullRequest => <PullRequestLine pullRequest={pullRequest}/>)}
        </Item>}
     </Container>
 
@@ -54,12 +51,11 @@ const PullRequestLine = ({pullRequest}: { readonly pullRequest: PullRequest}) =>
     <NameField><strong>{pullRequest.name}</strong></NameField>&nbsp;
     <TimeField>Submitted <strong>{timeElapsed(pullRequest.timeOpened)}</strong> ago</TimeField>&nbsp;
     <ApprovalsField><strong>{pullRequest.approvals}</strong> approvals</ApprovalsField>&nbsp;
-    <CommentersField>Open comments by <strong>{pullRequest.commenters.join(", ")}</strong></CommentersField>
 </PullRequestCard>
 
 
-export const timeElapsed = (startTime: string): string => {
-    const timeDifference = moment().diff(moment(startTime))
+export const timeElapsed = (startTime: Moment): string => {
+    const timeDifference = moment().diff(startTime)
     const elapsedMinutes =  moment.duration(timeDifference).asMinutes()
 
     const days = Math.floor(elapsedMinutes / (60 * 24))
