@@ -1,4 +1,4 @@
-import {periodically} from "./event"
+import {periodically} from "../event"
 
 export type Provider<T> =  () => Promise<T>
 

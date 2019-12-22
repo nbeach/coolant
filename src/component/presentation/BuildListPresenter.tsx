@@ -14,7 +14,7 @@ const Container = styled.div`
 `
 
 export const BuildListPresenter = ({data}: BuildListStateProps) => <Container>
-    {data.map(build => <BuildCardPresenter key={build.id} scaleFactor={data.length} {...build}/>)}
+    {data.map(build => <BuildCardPresenter key={build.id} fontSize={undefined} {...build}/>)}
 </Container>
 
 

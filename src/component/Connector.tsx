@@ -1,8 +1,6 @@
 import React, {FunctionComponent} from "react"
 import {periodically} from "../event"
-import {Provider} from "../Provider"
-
-
+import {Provider} from ".."
 
 export interface ConnectedComponentProps<T> {
     readonly provider: Provider<T>

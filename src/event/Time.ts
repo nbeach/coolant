@@ -10,7 +10,7 @@ const invokeAction = (action: () => void | Promise<void>) => {
 
 export const periodically = (action: () => void | Promise<void>, intervalSeconds: number = 5): NodeJS.Timeout => {
     invokeAction(action)
-    return setInterval(() => invokeAction(action), intervalSeconds * 1000)
+    return setInterval(() => invokeAction(action), intervalSeconds * 1000) as any // TODO: Remove this case when storybook issue resolved
 }
 
 const isPromise = <T>(value: T | Promise<T>): value is Promise<T> => (value as Promise<T>).then !== undefined
