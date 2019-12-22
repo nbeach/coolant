@@ -2,15 +2,15 @@ import React, {FunctionComponent} from "react"
 import {periodically} from "../event"
 import {Provider} from ".."
 
-export interface ConnectedComponentProps<T> {
-    readonly provider: Provider<T>
-    readonly updateIntervalSeconds?: number
+export interface ConnectedDataProp<T> {
+    readonly data: T
 }
 
 export interface ConnectorProps<T, C> {
-    readonly provider: Provider<T>,
+    readonly provider: Provider<T>
     readonly updateIntervalSeconds?: number
-    readonly component: FunctionComponent<{ readonly data: T }>
+    readonly otherComponentProps: C
+    readonly component: FunctionComponent<ConnectedDataProp<T> & C>
 }
 
 export class Connector<T, C> extends React.Component<ConnectorProps<T, C>, { readonly data: T | null }> {
@@ -25,7 +25,7 @@ export class Connector<T, C> extends React.Component<ConnectorProps<T, C>, { rea
 
     public render() {
         const ComponentToConnect = this.props.component
-        return this.state.data === null ? <></> : <ComponentToConnect data={this.state.data}/>
+        return this.state.data === null ? <></> : <ComponentToConnect data={this.state.data} {...this.props.otherComponentProps}/>
     }
 
     public componentDidMount(): void {

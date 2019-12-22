@@ -3,7 +3,7 @@ import {ObjectMap, toObjectMap} from "../util/ObjectMap"
 import {Build, BuildStatus} from "../model"
 import {Provider} from ".."
 
-export const onNewBuild = (provider: Provider<ReadonlyArray<Build>>, action: (priorBuild: Build, currentBuild: Build) => void) => {
+export const onNewBuild = (provider: Provider<readonly Build[]>, action: (priorBuild: Build, currentBuild: Build) => void) => {
     periodicallyWithState(async (priorRetrievedBuild: ObjectMap<Build>) => {
         const builds = await provider()
 

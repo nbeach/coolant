@@ -3,7 +3,7 @@ import {storiesOf} from "@storybook/react"
 import {BuildListPresenter} from "./BuildListPresenter"
 import {Build, BuildStatus} from "../../model"
 
-const builds: ReadonlyArray<Build> = [
+const builds: readonly Build[] = [
     { id: "1", number: "", name: "Lorem ipsum",  status: BuildStatus.Passed },
     { id: "2", number: "", name: "Dolor sit amet", status: BuildStatus.Running },
     { id: "3", number: "", name: "Quis nostrud", status: BuildStatus.Failed },

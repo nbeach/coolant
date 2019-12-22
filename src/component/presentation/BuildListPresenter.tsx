@@ -2,9 +2,10 @@ import React from "react"
 import styled from "styled-components"
 import {Build} from "../../model"
 import {BuildCardPresenter} from "./BuildCardPresenter"
+import {ConnectedDataProp} from "../Connector"
 
-interface BuildListStateProps {
-    readonly data: ReadonlyArray<Build>
+export interface BuildListPresenterProps {
+    readonly fontSize?: string
 }
 
 const Container = styled.div`
@@ -13,8 +14,8 @@ const Container = styled.div`
     flex-grow: 1;
 `
 
-export const BuildListPresenter = ({data}: BuildListStateProps) => <Container>
-    {data.map(build => <BuildCardPresenter key={build.id} fontSize={undefined} {...build}/>)}
+export const BuildListPresenter = (props: ConnectedDataProp<readonly Build[]> & BuildListPresenterProps) => <Container>
+    {props.data.map(build => <BuildCardPresenter key={build.id} fontSize={props.fontSize} {...build}/>)}
 </Container>
 
 

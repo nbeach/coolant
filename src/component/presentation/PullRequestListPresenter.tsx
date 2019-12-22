@@ -2,9 +2,10 @@ import React from "react"
 import styled from "styled-components"
 import {PullRequest} from "../../model"
 import {PullRequestCardPresenter} from "./PullRequestCardPresenter"
+import {ConnectedDataProp} from "../Connector"
 
-interface PullRequestListPresenterStateProps {
-    readonly data: ReadonlyArray<PullRequest>
+export interface PullRequestCardPresenterProps {
+    readonly fontSize?: string
 }
 
 const Container = styled.div`
@@ -15,10 +16,8 @@ const Container = styled.div`
     flex-direction: column;
 `
 
-
-
-export const PullRequestListPresenter = ({data}: PullRequestListPresenterStateProps) =>
+export const PullRequestListPresenter = (props: ConnectedDataProp<readonly PullRequest[]> & PullRequestCardPresenterProps) =>
    <Container>
-       { data.length === 0 ? <strong>No Open Pull Requests</strong> :
-           data.map(pullRequest => <PullRequestCardPresenter key={pullRequest.id} pullRequest={pullRequest} fontSize={undefined}/>)}
+       { props.data.length === 0 ? <strong>No Open Pull Requests</strong> :
+           props.data.map(pullRequest => <PullRequestCardPresenter key={pullRequest.id} pullRequest={pullRequest} fontSize={props.fontSize}/>)}
     </Container>
