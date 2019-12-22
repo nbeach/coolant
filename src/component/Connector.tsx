@@ -6,18 +6,21 @@ export interface ConnectedDataProp<T> {
     readonly data: T
 }
 
-export interface ConnectorProps<T, C> {
+export interface ConnectorProps<T> {
     readonly provider: Provider<T>
     readonly updateIntervalSeconds?: number
+}
+
+export interface ConnectorComponentProps<T, C> {
     readonly otherComponentProps: C
     readonly component: FunctionComponent<ConnectedDataProp<T> & C>
 }
 
-export class Connector<T, C> extends React.Component<ConnectorProps<T, C>, { readonly data: T | null }> {
+export class Connector<T, C> extends React.Component<ConnectorProps<T> & ConnectorComponentProps<T, C>, { readonly data: T | null }> {
     // tslint:disable-next-line:readonly-keyword
     private intervalId: NodeJS.Timeout | null = null
 
-    constructor(props: ConnectorProps<T, C>) {
+    constructor(props: ConnectorProps<T> & ConnectorComponentProps<T, C>) {
         super(props)
         this.state = { data: null }
     }

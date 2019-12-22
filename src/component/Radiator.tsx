@@ -10,4 +10,10 @@ export const Radiator = styled.div`
     justify-content: space-around;
     align-items: center;
     background-color: rgb(52, 56, 64);
+    color: rgb(255, 255, 255);
+    font-family: sans-serif;
+`
+
+export const Muted = styled.span`
+    color: rgba(255, 255, 255, 0.5);
 `

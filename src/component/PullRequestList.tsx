@@ -3,4 +3,5 @@ import React from "react"
 import {PullRequest} from "../model"
 import {PullRequestCardPresenterProps, PullRequestListPresenter} from "./presentation/PullRequestListPresenter"
 
-export const PullRequestList = (props: ConnectorProps<readonly PullRequest[], PullRequestCardPresenterProps>) => <Connector component={PullRequestListPresenter} {...props}/>
+export const PullRequestList = (props: ConnectorProps<readonly PullRequest[]> & PullRequestCardPresenterProps) =>
+    <Connector component={PullRequestListPresenter} otherComponentProps={{ fontSize: props.fontSize}} {...props}/>
