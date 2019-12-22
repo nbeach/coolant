@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import {Style} from "../util/Style"
 
 export const Radiator = styled.div`
     position: fixed;
@@ -9,11 +10,11 @@ export const Radiator = styled.div`
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background-color: rgb(52, 56, 64);
-    color: rgb(255, 255, 255);
+    background-color: ${Style.color.background};
+    color: ${Style.color.font};
     font-family: sans-serif;
 `
 
 export const Muted = styled.span`
-    color: rgba(255, 255, 255, 0.5);
+    color: ${Style.color.muted};
 `

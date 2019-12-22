@@ -2,6 +2,7 @@ import React from "react"
 import {storiesOf} from "@storybook/react"
 import {BuildListPresenter} from "./BuildListPresenter"
 import {Build, BuildStatus} from "../../model"
+import {Radiator} from "../Radiator"
 
 const builds: readonly Build[] = [
     { id: "1", number: "", name: "Lorem ipsum",  status: BuildStatus.Passed },
@@ -15,5 +16,6 @@ const builds: readonly Build[] = [
 ]
 
 storiesOf("BuildListPresenter", module)
+    .addDecorator((story) => <Radiator>{story()}</Radiator>)
     .add("one build", () => <BuildListPresenter data={[builds[0]]}/>)
     .add("many builds", () => <BuildListPresenter data={builds}/>)

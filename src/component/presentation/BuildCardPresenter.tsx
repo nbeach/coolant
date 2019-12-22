@@ -6,8 +6,8 @@ import {Build, BuildStatus} from "../../model"
 import {Card} from "./generic/Card"
 
 const statusColorMap = {
-    [BuildStatus.Passed]: Style.color.state.passed,
-    [BuildStatus.Running]: Style.color.state.running,
+    [BuildStatus.Passed]: Style.color.state.success,
+    [BuildStatus.Running]: Style.color.state.inProgress,
     [BuildStatus.Failed]: Style.color.state.failed,
 }
 

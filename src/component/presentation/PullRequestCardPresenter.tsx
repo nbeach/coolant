@@ -16,8 +16,8 @@ export const PullRequestCardPresenter = (props: { readonly pullRequest: PullRequ
 
 const statusColorMap = {
     [PullRequestStatus.New]: Style.color.state.failed,
-    [PullRequestStatus.UnderReview]: Style.color.state.running,
-    [PullRequestStatus.ReadyToMerge]: Style.color.state.passed,
+    [PullRequestStatus.UnderReview]: Style.color.state.inProgress,
+    [PullRequestStatus.ReadyToMerge]: Style.color.state.success,
 }
 const timeElapsed = (startTime: Moment): string => {
     const timeDifference = moment().diff(startTime)
