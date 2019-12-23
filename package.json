@@ -53,7 +53,6 @@
     "jsdom": "^15.1.1",
     "mocha": "^6.2.0",
     "rimraf": "^2.6.3",
-    "ts-loader": "^6.0.4",
     "ts-node": "^8.3.0",
     "tslint": "^5.20.1",
     "tslint-immutable": "^6.0.1",
