@@ -2,7 +2,7 @@ import React, {PropsWithChildren} from "react"
 import styled from "styled-components"
 import {Style} from "../../../util/Style"
 
-const CardContainer = styled.div<{ readonly color: string, readonly fontSize: string}>`
+const CardContainer = styled.div<{ readonly color: string, readonly scaleFactor: number}>`
     display: flex;
     justify-content: space-between;
     flex-grow: 1;
@@ -12,10 +12,10 @@ const CardContainer = styled.div<{ readonly color: string, readonly fontSize: st
     margin: 0.25rem;
 
     background-color: ${({color}) => color};
-    font-size: ${({fontSize}) => fontSize};
+    font-size: ${({scaleFactor}) => scaleFactor * Style.size.baseFontSize}rem;
 `
 
-export const Card = (props: PropsWithChildren<{ readonly color: string, readonly fontSize?: string}>) =>
-    <CardContainer color={props.color} fontSize={props.fontSize ?? Style.size.defaultFontSize}>
+export const Card = (props: PropsWithChildren<{ readonly color: string, readonly scaleFactor?: number}>) =>
+    <CardContainer color={props.color} scaleFactor={props.scaleFactor ?? 1}>
         {props.children}
     </CardContainer>

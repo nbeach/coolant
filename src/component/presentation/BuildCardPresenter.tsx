@@ -23,7 +23,7 @@ const Name = styled.div`
     text-overflow: ellipsis;
 `
 
-export const BuildCardPresenter = ({ name, status, fontSize }: Build & { readonly fontSize?: string }) =>
-    <Card color={statusColorMap[status]} fontSize={fontSize}>
+export const BuildCardPresenter = ({ name, status, scaleFactor }: Build & { readonly scaleFactor?: number }) =>
+    <Card color={statusColorMap[status]} scaleFactor={scaleFactor}>
        <Name>{name}</Name> {statusGlpyhMap[status]}
     </Card>

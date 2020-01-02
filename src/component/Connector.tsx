@@ -2,25 +2,25 @@ import React, {FunctionComponent} from "react"
 import {periodically} from "../event"
 import {Provider} from ".."
 
-export interface ConnectedDataProp<T> {
-    readonly data: T
+export interface ConnectedDataProp<DataPropType> {
+    readonly data: DataPropType
 }
 
-export interface ConnectorProps<T> {
-    readonly provider: Provider<T>
+export interface ConnectorProps<DataPropType> {
+    readonly provider: Provider<DataPropType>
     readonly updateIntervalSeconds?: number
 }
 
-export interface ConnectorComponentProps<T, C> {
-    readonly otherComponentProps: C
-    readonly component: FunctionComponent<ConnectedDataProp<T> & C>
+export interface ConnectorComponentProps<DataPropType, OtherProps> {
+    readonly otherComponentProps: OtherProps
+    readonly component: FunctionComponent<ConnectedDataProp<DataPropType> & OtherProps>
 }
 
-export class Connector<T, C> extends React.Component<ConnectorProps<T> & ConnectorComponentProps<T, C>, { readonly data: T | null }> {
+export class Connector<DataPropType, OtherProps> extends React.Component<ConnectorProps<DataPropType> & ConnectorComponentProps<DataPropType, OtherProps>, { readonly data: DataPropType | null }> {
     // tslint:disable-next-line:readonly-keyword
     private intervalId: NodeJS.Timeout | null = null
 
-    constructor(props: ConnectorProps<T> & ConnectorComponentProps<T, C>) {
+    constructor(props: ConnectorProps<DataPropType> & ConnectorComponentProps<DataPropType, OtherProps>) {
         super(props)
         this.state = { data: null }
     }

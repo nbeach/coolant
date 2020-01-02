@@ -19,4 +19,5 @@ const pullRequests: readonly PullRequest[] = [
 storiesOf("PullRequestListPresenter", module)
     .addDecorator((story) => <Radiator>{story()}</Radiator>)
     .add("many pull requests", () => <PullRequestListPresenter data={pullRequests}/>)
+    .add("many pull requests scaled 2x", () => <PullRequestListPresenter data={pullRequests} scaleFactor={2}/>)
     .add("no pull requests", () => <PullRequestListPresenter data={[]}/>)

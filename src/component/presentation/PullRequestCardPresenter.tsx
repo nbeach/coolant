@@ -4,8 +4,8 @@ import React from "react"
 import {Style} from "../../util/Style"
 import {Card} from "./generic/Card"
 
-export const PullRequestCardPresenter = (props: { readonly pullRequest: PullRequest, readonly fontSize?: string}) =>
-    <Card color={statusColorMap[props.pullRequest.status]} fontSize={props.fontSize}>
+export const PullRequestCardPresenter = (props: { readonly pullRequest: PullRequest, readonly scaleFactor?: number}) =>
+    <Card color={statusColorMap[props.pullRequest.status]} scaleFactor={props.scaleFactor}>
         <div>{props.pullRequest.name}</div>
         <div>
             {timeElapsed(props.pullRequest.timeOpened)}

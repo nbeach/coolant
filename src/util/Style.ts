@@ -10,6 +10,6 @@ export const Style = {
         font: "rgb(255, 255, 255)",
     },
     size: {
-        defaultFontSize: "2rem",
+        baseFontSize: 2,
     },
 }

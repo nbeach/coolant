@@ -5,7 +5,7 @@ import {BuildCardPresenter} from "./BuildCardPresenter"
 import {ConnectedDataProp} from "../Connector"
 
 export interface BuildListPresenterProps {
-    readonly fontSize?: string
+    readonly scaleFactor?: number
 }
 
 const Container = styled.div`
@@ -15,7 +15,7 @@ const Container = styled.div`
 `
 
 export const BuildListPresenter = (props: ConnectedDataProp<readonly Build[]> & BuildListPresenterProps) => <Container>
-    {props.data.map(build => <BuildCardPresenter key={build.id} fontSize={props.fontSize} {...build}/>)}
+    {props.data.map(build => <BuildCardPresenter key={build.id} scaleFactor={props.scaleFactor} {...build}/>)}
 </Container>
 
 
