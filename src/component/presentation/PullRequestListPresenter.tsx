@@ -1,24 +1,24 @@
 import React from "react"
-import styled from "styled-components"
 import {PullRequest} from "../../model"
 import {PullRequestCardPresenter} from "./PullRequestCardPresenter"
 import {ConnectedDataProp} from "../Connector"
 import {Style} from "../../util/Style"
+import {styled} from "../styled"
 
 export interface PullRequestCardPresenterProps {
     readonly scaleFactor?: number
 }
 
-const Container = styled.div`
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    text-align: center;
-`
+const Container = styled("div", () => ({
+    display: "flex",
+    flexDirection: "column",
+    width: "100%",
+    textAlign: "center",
+}))
 
-const VariableSizeText = styled.span<{readonly scaleFactor: number }>`
-    font-size: ${({scaleFactor}) => scaleFactor * Style.size.baseFontSize};
-`
+const VariableSizeText = styled<{readonly scaleFactor: number }>("span", (config) => ({
+    fontSize: `${config.scaleFactor * Style.size.baseFontSize}rem`,
+}))
 
 export const PullRequestListPresenter = (props: ConnectedDataProp<readonly PullRequest[]> & PullRequestCardPresenterProps) =>
    <Container>

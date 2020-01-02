@@ -1,9 +1,9 @@
 import React from "react"
-import styled from "styled-components"
 import {FaCheck, FaClock, FaExclamation} from "react-icons/fa"
 import {Style} from "../../util/Style"
 import {Build, BuildStatus} from "../../model"
 import {Card} from "./generic/Card"
+import {styled} from "../styled"
 
 const statusColorMap = {
     [BuildStatus.Passed]: Style.color.state.success,
@@ -17,11 +17,11 @@ const statusGlpyhMap = {
     [BuildStatus.Failed]: <FaExclamation/>,
 }
 
-const Name = styled.div`
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-`
+const Name = styled("div", () => ({
+    whiteSpace: "nowrap",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+}))
 
 export const BuildCardPresenter = ({ name, status, scaleFactor }: Build & { readonly scaleFactor?: number }) =>
     <Card color={statusColorMap[status]} scaleFactor={scaleFactor}>
