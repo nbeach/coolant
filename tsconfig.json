@@ -18,7 +18,6 @@
     "types": ["node", "mocha", "chai-dom"],
     "declaration" : true,
     "jsx": "react",
-    "esModuleInterop": true,
-    "outDir": "./build"
+    "esModuleInterop": true
   }
 }
