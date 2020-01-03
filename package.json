@@ -1,13 +1,11 @@
 {
   "name": "coolant",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "The modular build radiator",
-  "main": "src/index.js",
-  "types": "src/index.d.ts",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
   "files": [
-    "src/**/*.d.ts",
-    "src/**/*.js",
-    "src/**/*.js.map",
+    "build/**/*",
     "README.md",
     "LICENSE"
   ],
@@ -26,8 +24,8 @@
     "radiator"
   ],
   "scripts": {
-    "clean": "rimraf src/**/*.js src/**/*.js.map src/**/*.d.ts",
-    "build": "yarn run clean && tsc --project tsconfig.build.json",
+    "clean": "rimraf build/",
+    "build": "yarn run clean && tsc --project ./tsconfig.build.json",
     "release:tag": "git tag $(node -p -e \"require('./package.json').version\") && git push origin --tags",
     "release": "yarn run test:once && yarn run build && yarn run release:tag && yarn publish && yarn run clean",
     "storybook": "start-storybook -s ./public",
