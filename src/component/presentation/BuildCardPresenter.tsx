@@ -11,7 +11,7 @@ const statusColorMap = {
     [BuildStatus.Failed]: Style.color.state.failed,
 }
 
-const statusGlpyhMap = {
+const statusGlyphMap = {
     [BuildStatus.Passed]: <FaCheck/>,
     [BuildStatus.Running]: <FaClock/>,
     [BuildStatus.Failed]: <FaExclamation/>,
@@ -25,5 +25,5 @@ const Name = styled("div", () => ({
 
 export const BuildCardPresenter = ({ name, status, scaleFactor }: Build & { readonly scaleFactor?: number }) =>
     <Card color={statusColorMap[status]} scaleFactor={scaleFactor}>
-       <Name>{name}</Name> {statusGlpyhMap[status]}
+       <Name>{name}</Name> {statusGlyphMap[status]}
     </Card>
