@@ -6,15 +6,16 @@ import {Provider} from ".."
 export const onNewBuild = (provider: Provider<readonly Build[]>, action: (priorBuild: Build, currentBuild: Build) => void, updateIntervalSeconds?: number) => {
     periodicallyWithState(async (priorRetrievedBuild: ObjectMap<Build>) => {
         const builds = await provider()
+        const nonRunningBuilds = builds.filter(build => build.status !== BuildStatus.Running)
 
-        builds
+        nonRunningBuilds
             .filter(build => build.status !== BuildStatus.Running)
             .map(build => ({ currentBuild: build, priorBuild: priorRetrievedBuild[build.id] }))
             .filter(({ priorBuild}) => priorBuild !== undefined)
             .filter(({currentBuild, priorBuild}) => priorBuild?.number !== currentBuild.number)
             .forEach(({currentBuild, priorBuild}) => action(priorBuild, currentBuild))
 
-        return {...priorRetrievedBuild, ...toObjectMap(builds, build => build.id)}
+        return {...priorRetrievedBuild, ...toObjectMap(nonRunningBuilds, build => build.id)}
     }, {}, updateIntervalSeconds)}
 
 
